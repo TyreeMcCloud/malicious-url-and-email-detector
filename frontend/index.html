@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Checker</title>
+    <link rel="icon" type="image/png" href="image.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="image.png" alt="lock" class="lock-icon">
+        <h1>AI Malicious Email & URL Detector</h1>
+
+        <div class="card">
+            <h2>📧 Check Email for Phishing</h2>
+            <textarea id="emailText" rows="4" placeholder="Enter email text..."></textarea>
+            <button onclick="checkPhishing()">Analyze Email</button>
+        </div>
+
+        <div class="card">
+            <h2>🌐 Check URL for Malware</h2>
+            <input type="text" id="urlInput" placeholder="Enter URL...">
+            <button onclick="checkMalware()">Analyze URL</button>
+        </div>
+
+        <div id="result-box" class="hidden">
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
