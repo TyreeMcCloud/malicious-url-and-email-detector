@@ -44,8 +44,15 @@ async function checkPhishing() {
 }
 
 async function checkMalware() {
-    let url = document.getElementById("urlInput").value;
+    let url = document.getElementById("urlInput").value; // Get custom URL input value
+    const dropdown = document.getElementById("urlDropdown");
 
+    // Check if the user selected a URL from the dropdown
+    if (dropdown.value.trim() !== "") {
+        url = dropdown.value; // If selected, use the dropdown value
+    }
+
+    // If neither URL is provided
     if (!url.trim()) {
         alert("⚠️ Please enter a URL to analyze.");
         return;
@@ -64,5 +71,41 @@ async function checkMalware() {
     } else {
         displayResult(`🌐 URL: ${data.classification} (Confidence: ${data.confidence})`);
     }
+
+    // Delay clearing the input fields
+    setTimeout(() => {
+        document.getElementById("urlInput").value = ''; // Clear custom URL input
+        dropdown.value = ''; // Reset dropdown to default value
+    }, 2000); // Delay of 2000ms (2 seconds)
 }
+
+
+
+async function populateDropdown() {
+    const urlDropdown = document.getElementById('urlDropdown');
+
+    try {
+        let response = await fetch("http://127.0.0.1:8000/api/urls");
+        let data = await response.json();
+
+        // Clear existing options
+        urlDropdown.innerHTML = '<option value="">Select a URL...</option>';
+
+        // Shuffle and select 50 random URLs
+        let urls = data.urls.sort(() => 0.5 - Math.random()).slice(0, 50);
+
+        // Populate dropdown with the selected URLs
+        urls.forEach(url => {
+            const option = document.createElement('option');
+            option.value = url;
+            option.textContent = url;
+            urlDropdown.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error fetching URLs:", error);
+    }
+}
+
+// Load URLs when the page loads
+window.onload = populateDropdown;
 
