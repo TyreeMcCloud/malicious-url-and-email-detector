@@ -94,5 +94,49 @@ button:hover {
     margin-left: 10px;
     padding: 0px;
 }
+/* Center the dropdown */
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Improved dropdown styling */
+#urlDropdown {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: 2px solid #007bff; /* Nice blue border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f8f9fa; /* Light gray background */
+    font-size: 16px;
+    margin: 5px;
+    text-align: center; /* Center text */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Dropdown hover effect */
+#urlDropdown:hover {
+    background-color: #e9ecef; /* Slightly darker gray */
+}
+
+/* Dropdown focus effect */
+#urlDropdown:focus {
+    border-color: #0056b3; /* Darker blue */
+    outline: none;
+}
+
+/* Style the options */
+option {
+    font-size: 14px;
+    padding: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 

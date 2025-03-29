@@ -16,10 +16,32 @@
             <h2>📧 Check Email for Phishing</h2>
             <textarea id="emailText" rows="4" placeholder="Enter email text..."></textarea>
             <button onclick="checkPhishing()">Analyze Email</button>
+
+            <!-- 🔄 AI Model Dropdown (Cleaned) -->
+            <label for="modelSelect">Choose AI Model:</label>
+            <select id="modelSelect">
+                <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Cheaper)</option>
+                <option value="gpt-4o">GPT-4o (More Accurate)</option>
+            </select>
+
+            <!-- 🧠 Explain Threat -->
+            <button onclick="getPhishingExplanation()">🧠 Explain Threat</button>
+            <div id="explanationOutput" class="explanation-box hidden"></div>
         </div>
 
         <div class="card">
             <h2>🌐 Check URL for Malware</h2>
+
+            <!-- Dropdown for URL selection -->
+            <label for="urlDropdown">Select a URL:</label>
+            <div class="dropdown-container">
+                <select id="urlDropdown">
+                    <option value="">Select a URL...</option>
+                </select>
+            </div>
+
+            <!-- Custom URL input -->
+            <label for="urlInput">Or enter a custom URL:</label>
             <input type="text" id="urlInput" placeholder="Enter URL...">
             <button onclick="checkMalware()">Analyze URL</button>
         </div>
@@ -32,5 +54,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-

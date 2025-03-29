@@ -1,68 +1,28 @@
-function displayResult(message) {
-    let resultBox = document.getElementById("result-box");
-    let resultText = document.getElementById("result");
+// 💥 Phishing AI Explanation (w/ GPT Model Selection)
+async function getPhishingExplanation() {
+    const emailText = document.getElementById("emailText").value;
+    const selectedModel = document.getElementById("modelSelect").value;
+    const outputDiv = document.getElementById("explanationOutput");
 
-    resultText.innerText = message;
-    resultBox.classList.remove("hidden");
-}
-
-// Function to escape HTML entities
-function escapeHTML(input) {
-    const div = document.createElement('div');
-    div.innerText = input;
-    return div.innerHTML;
-}
-
-async function checkPhishing() {
-    let emailText = document.getElementById("emailText").value;
-    
     if (!emailText.trim()) {
-        alert("⚠️ Please enter email text to analyze.");
+        alert("⚠️ Please enter email text first.");
         return;
     }
 
-    // Escape the input
-    let escapedEmailText = escapeHTML(emailText);
+    outputDiv.classList.remove("hidden");
+    outputDiv.innerText = "⏳ Generating explanation...";
 
     try {
-        let response = await fetch("http://127.0.0.1:8000/detect-phishing", {
+        const response = await fetch("http://127.0.0.1:8000/explain-phishing", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email_text: escapedEmailText })
+            body: JSON.stringify({ email_text: emailText, model: selectedModel })
         });
 
-        if (!response.ok) {
-            throw new Error(`Server responded with status: ${response.status}`);
-        }
-
-        let data = await response.json();
-        displayResult(`📧 Email: ${data.classification} (Confidence: ${data.confidence})`);
+        const data = await response.json();
+        outputDiv.innerText = data.explanation || "⚠️ No explanation returned.";
     } catch (error) {
-        console.error("Error during fetch operation:", error);
-        alert("An error occurred while analyzing the email. Please try again.");
+        console.error("Error getting explanation:", error);
+        outputDiv.innerText = "❌ Failed to generate explanation.";
     }
 }
-
-async function checkMalware() {
-    let url = document.getElementById("urlInput").value;
-
-    if (!url.trim()) {
-        alert("⚠️ Please enter a URL to analyze.");
-        return;
-    }
-
-    let response = await fetch("http://127.0.0.1:8000/detect-malware", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: url })
-    });
-
-    let data = await response.json();
-
-    if (data.error) {
-        displayResult(`⚠️ Error: ${data.error}`);
-    } else {
-        displayResult(`🌐 URL: ${data.classification} (Confidence: ${data.confidence})`);
-    }
-}
-
