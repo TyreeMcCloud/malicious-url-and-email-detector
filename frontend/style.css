@@ -1,10 +1,22 @@
+/* Matrix Canvas Background */
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+}
+
 /* General Styling */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #141e30, #243b55);
-    color: #fff;
+    background: transparent;
+    color: #00ffcc;
     text-align: center;
     padding: 40px;
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
 }
 
 /* Centered Card Layout */
@@ -12,27 +24,33 @@ body {
     max-width: 500px;
     margin: auto;
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00ffcc;
 }
 
 /* Title */
 h1 {
     font-size: 42px;
     margin-bottom: 20px;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
 /* Card Design */
 .card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px #00ffcc;
     margin-bottom: 20px;
     backdrop-filter: blur(8px);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 20px #00ffcc;
 }
 
 /* Inputs & Buttons */
@@ -40,41 +58,60 @@ textarea, input {
     width: 90%;
     padding: 12px;
     font-size: 16px;
-    border: 2px solid transparent;
+    border: 2px solid #00ffcc;
+    background-color: #000;
+    color: #00ffcc;
     border-radius: 6px;
     margin-top: 10px;
     transition: 0.3s;
+    box-shadow: 0 0 5px #00ffcc;
 }
 
 textarea:focus, input:focus {
-    border-color: #00c6ff;
+    border-color: #00ffcc;
     outline: none;
+    box-shadow: 0 0 10px #00ffcc;
 }
 
 button {
-    background: #00c6ff;
-    color: white;
+    background: #00ffcc;
+    color: black;
     border: none;
     padding: 12px 20px;
     font-size: 16px;
     border-radius: 6px;
     cursor: pointer;
     margin-top: 10px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
 button:hover {
-    background: #0072ff;
+    background: #00ffee;
+    box-shadow: 0 0 20px #00ffee, 0 0 30px #00ffee;
 }
 
 /* Result Box */
 #result-box {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.85);
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
     display: inline-block;
     animation: fadeIn 0.5s ease-in-out;
+    box-shadow: 0 0 15px #00ffcc;
+    color: #00ffcc;
+}
+
+/* Explanation Output */
+.explanation-box {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ffcc;
+    color: #00ffcc;
+    white-space: pre-wrap;
 }
 
 .hidden {
@@ -92,8 +129,8 @@ button:hover {
     height: auto;
     vertical-align: middle;
     margin-left: 10px;
-    padding: 0px;
 }
+
 /* Center the dropdown */
 .dropdown-container {
     display: flex;
@@ -107,36 +144,34 @@ button:hover {
     width: 100%;
     max-width: 300px;
     padding: 10px;
-    border: 2px solid #007bff; /* Nice blue border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #f8f9fa; /* Light gray background */
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
+    background-color: #000;
+    color: #00ffcc;
     font-size: 16px;
     margin: 5px;
-    text-align: center; /* Center text */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    box-shadow: 0 0 10px #00ffcc;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Dropdown hover effect */
 #urlDropdown:hover {
-    background-color: #e9ecef; /* Slightly darker gray */
+    background-color: #111;
 }
 
-/* Dropdown focus effect */
 #urlDropdown:focus {
-    border-color: #0056b3; /* Darker blue */
+    border-color: #00ffee;
     outline: none;
+    box-shadow: 0 0 15px #00ffee;
 }
 
-/* Style the options */
 option {
     font-size: 14px;
     padding: 5px;
+    background-color: #000;
+    color: #00ffcc;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
-
