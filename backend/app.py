@@ -81,7 +81,9 @@ async def detect_malware(data: URL):
 @app.post("/explain-phishing")
 async def explain_phishing(data: EmailText):
     prompt = f"""
-You are a cybersecurity expert. Analyze the following email and explain if it is a phishing attempt. Highlight suspicious elements and provide helpful advice to the user.
+You are a cybersecurity expert. Analyze the following email
+and explain if it is a phishing attempt. Highlight suspicious
+elements and provide helpful advice to the user.
 
 EMAIL:
 \"\"\"

@@ -26,7 +26,7 @@ fi
 # Start live server in the frontend directory
 echo "Starting Live Server..."
 cd frontend || { echo "Frontend directory not found"; exit 1; }
-#npx live-server --port=5500 --open --root "$(pwd)" &
+npx live-server --port=5500 --open --root "$(pwd)" &
 
 # Get the frontend server process ID
 FRONTEND_PID=$!
